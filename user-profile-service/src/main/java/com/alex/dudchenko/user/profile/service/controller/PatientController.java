@@ -24,13 +24,15 @@ public class PatientController {
         return patientService.findPatientById(id);
     }
 
-    @GetMapping
+    @GetMapping(params = "uid")
     public Patient getPatientByUid(@RequestParam String uid) {
+        //TODO: Change the contract to return collection as we work on collective resource
         return patientService.findByUid(uid);
     }
 
-    @GetMapping
+    @GetMapping(params = "email")
     public Patient getPatientByEmail(@RequestParam String email) {
+        //TODO: Change the contract to return collection as we work on collective resource
         return patientService.findPatientByEmail(email);
     }
 

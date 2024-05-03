@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +17,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient savePatient(Patient patient) {
+        if (patient.getUid() == null) {
+            String uid = UUID.randomUUID().toString().substring(0, 8);
+            patient.setUid(uid);
+        }
         return patientRepository.save(patient);
     }
 

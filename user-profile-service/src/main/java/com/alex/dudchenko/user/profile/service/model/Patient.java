@@ -1,9 +1,7 @@
 package com.alex.dudchenko.user.profile.service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.alex.dudchenko.user.profile.service.config.AesEncryptor;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +16,14 @@ import java.time.LocalDate;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "patient_seq")
+    @SequenceGenerator(name = "patient_seq", sequenceName = "patient_seq", allocationSize = 1)
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String uid;
+
+    @Convert(converter = AesEncryptor.class)
     private LocalDate birthDate;
 }

@@ -1,0 +1,10 @@
+POST http://localhost:8080/patients
+Content-Type: application/json
+
+{
+  "firstName": "Zhenya",
+  "lastName": "Vovk",
+  "email": "vovk@mail.com",
+  "uid": "PATEST12",
+  "birthDate": "1996-12-23"
+}

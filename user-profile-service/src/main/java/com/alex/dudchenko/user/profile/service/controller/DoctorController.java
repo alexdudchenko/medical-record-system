@@ -24,8 +24,9 @@ public class DoctorController {
         return doctorService.findDoctorById(id);
     }
 
-    @GetMapping
+    @GetMapping(params = "email")
     public Doctor getDoctorByEmail(@RequestParam String email) {
+        //TODO: Change the contract to return collection as we work on collective resource
         return doctorService.findDoctorByEmail(email);
     }
 
