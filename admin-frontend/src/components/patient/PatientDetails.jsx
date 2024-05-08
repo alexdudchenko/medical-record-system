@@ -1,6 +1,17 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {Box, Button, ButtonGroup, FormControl, FormLabel, Input} from "@chakra-ui/react";
+import {
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogContent, AlertDialogFooter, AlertDialogHeader,
+    AlertDialogOverlay,
+    Box,
+    Button,
+    ButtonGroup,
+    FormControl,
+    FormLabel,
+    Input, useDisclosure
+} from "@chakra-ui/react";
 import {deletePatientById, getPatientById, updatePatient} from "../../service/PatientService.js";
 
 export default function PatientDetails() {
@@ -14,6 +25,9 @@ export default function PatientDetails() {
     const {id} = useParams()
 
     const navigator = useNavigate()
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = React.useRef()
 
     useEffect(() => {
         getPatientInfo(id)
@@ -81,10 +95,37 @@ export default function PatientDetails() {
                     />
                     <ButtonGroup>
                         <Button type="submit" onClick={updatePatientDetails}>Update patient details</Button>
-                        <Button onClick={deletePatientDetails}>Delete {"patient's"} profile</Button>
+                        <Button colorScheme="red" onClick={onOpen}>Delete {"patient's"} profile</Button>
                     </ButtonGroup>
                 </FormControl>
             </Box>
+
+            <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+            >
+                <AlertDialogOverlay>
+                    <AlertDialogContent>
+                        <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                            Delete Customer
+                        </AlertDialogHeader>
+
+                        <AlertDialogBody>
+                            {"Are you sure? You can't undo this action afterwards."}
+                        </AlertDialogBody>
+
+                        <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={onClose}>
+                                Cancel
+                            </Button>
+                            <Button colorScheme='red' onClick={deletePatientDetails} ml={3}>
+                                Delete
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
         </>
     )
 }
