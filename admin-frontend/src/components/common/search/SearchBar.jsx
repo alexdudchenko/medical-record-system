@@ -2,11 +2,18 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import {SearchIcon} from "@chakra-ui/icons"
 import {getAllPatients, getPatientsByPattern} from "../../../service/PatientService.js";
 import {getAllDoctors, getDoctorsByPattern} from "../../../service/DoctorService.js";
+import {useEffect, useState} from "react";
 
 export default function SearchBar( {setData, searchCollection} ) {
 
-    const handleChange = (e) => {
-        const pattern = e.target.value.toLowerCase()
+    const [pattern, setPattern] = useState("")
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => searchByPattern(pattern), 500)
+        return () => clearTimeout(timeOutId)
+    }, [pattern]);
+
+    function searchByPattern(pattern) {
         console.log(pattern)
         let req
         if (searchCollection === "patients" && pattern) {
@@ -23,13 +30,13 @@ export default function SearchBar( {setData, searchCollection} ) {
         req
             .then(res => setData(res.data))
             .catch(err => console.error(err))
-    };
+    }
 
     return (
         <>
             <InputGroup w="25%" margin="auto">
                 <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />
-                <Input type="text" placeholder="Search..." onChange={handleChange} />
+                <Input type="text" placeholder="Search..." onChange={(e) => setPattern(e.target.value.toLowerCase())} />
             </InputGroup>
         </>
     )
