@@ -1,0 +1,9 @@
+POST http://localhost:8080/patients
+Content-Type: application/json
+
+{
+  "firstName": "Vitya",
+  "lastName": "Dud",
+  "email": "ddd@gmail.com",
+  "birthDate": "1998-12-15"
+}

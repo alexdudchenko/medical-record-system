@@ -35,7 +35,17 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Doctor findDoctorByEmail(String email) {
-        return doctorRepository.findByEmail(email).orElseThrow();
+    public List<Doctor> findDoctorByEmail(String email) {
+        return List.of(doctorRepository.findByEmail(email).orElseThrow());
+    }
+
+    @Override
+    public List<Doctor> findDoctorsByPattern(String pattern) {
+        return doctorRepository.findDoctorsBySearchableDetailsContains(pattern);
+    }
+
+    @Override
+    public List<Doctor> findUnverifiedDoctors() {
+        return doctorRepository.findDoctorByVerified(Boolean.FALSE);
     }
 }

@@ -10,5 +10,7 @@ public interface DoctorService {
     void deleteDoctor(Long id);
     List<Doctor> findAllDoctors();
     Doctor findDoctorById(Long id);
-    Doctor findDoctorByEmail(String email);
+    List<Doctor> findDoctorByEmail(String email);
+    List<Doctor> findDoctorsByPattern(String pattern);
+    List<Doctor> findUnverifiedDoctors();
 }

@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/doctors")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class DoctorController {
 
     private final DoctorService doctorService;
@@ -19,15 +20,24 @@ public class DoctorController {
         return doctorService.findAllDoctors();
     }
 
+    @GetMapping(params = "verified")
+    public List<Doctor> getUnverifiedDoctors() {
+        return doctorService.findUnverifiedDoctors();
+    }
+
     @GetMapping("/{id}")
     public Doctor getDoctorById(@PathVariable Long id) {
         return doctorService.findDoctorById(id);
     }
 
     @GetMapping(params = "email")
-    public Doctor getDoctorByEmail(@RequestParam String email) {
-        //TODO: Change the contract to return collection as we work on collective resource
+    public List<Doctor> getDoctorByEmail(@RequestParam String email) {
         return doctorService.findDoctorByEmail(email);
+    }
+
+    @GetMapping(params = "pattern")
+    public List<Doctor> getDoctorsByPattern(@RequestParam String pattern) {
+        return doctorService.findDoctorsByPattern(pattern);
     }
 
     @PostMapping

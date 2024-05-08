@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/patients")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class PatientController {
 
     private final PatientService patientService;
@@ -25,15 +27,18 @@ public class PatientController {
     }
 
     @GetMapping(params = "uid")
-    public Patient getPatientByUid(@RequestParam String uid) {
-        //TODO: Change the contract to return collection as we work on collective resource
+    public List<Patient> getPatientByUid(@RequestParam String uid) {
         return patientService.findByUid(uid);
     }
 
     @GetMapping(params = "email")
-    public Patient getPatientByEmail(@RequestParam String email) {
-        //TODO: Change the contract to return collection as we work on collective resource
+    public List<Patient> getPatientByEmail(@RequestParam String email) {
         return patientService.findPatientByEmail(email);
+    }
+
+    @GetMapping(params = "pattern")
+    public List<Patient> getPatientByPattern(@RequestParam String pattern) {
+        return patientService.findPatientsByPattern(pattern);
     }
 
     @PostMapping

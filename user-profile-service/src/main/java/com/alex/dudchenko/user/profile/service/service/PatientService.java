@@ -9,7 +9,8 @@ public interface PatientService {
     Patient savePatient(Patient patient);
     void deletePatient(Long id);
     Patient findPatientById(Long id);
-    Patient findPatientByEmail(String email);
+    List<Patient> findPatientByEmail(String email);
     List<Patient> findAllPatients();
-    Patient findByUid(String uid);
+    List<Patient> findByUid(String uid);
+    List<Patient> findPatientsByPattern(String pattern);
 }

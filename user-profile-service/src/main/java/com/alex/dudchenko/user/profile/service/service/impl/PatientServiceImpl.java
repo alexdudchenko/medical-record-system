@@ -35,8 +35,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient findPatientByEmail(String email) {
-        return patientRepository.findByEmail(email).orElseThrow();
+    public List<Patient> findPatientByEmail(String email) {
+        return List.of(patientRepository.findByEmail(email).orElseThrow());
     }
 
     @Override
@@ -45,7 +45,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient findByUid(String uid) {
-        return patientRepository.findByUid(uid).orElseThrow();
+    public List<Patient> findByUid(String uid) {
+        return List.of(patientRepository.findByUid(uid).orElseThrow());
+    }
+
+    @Override
+    public List<Patient> findPatientsByPattern(String pattern) {
+        return patientRepository.findPatientsBySearchableDetailsContains(pattern);
     }
 }

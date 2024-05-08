@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
 
@@ -18,10 +19,18 @@ public class Doctor {
     @GeneratedValue(generator = "doctor_seq")
     @SequenceGenerator(name = "doctor_seq", sequenceName = "doctor_seq", allocationSize = 1)
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private LocalDate birthDate;
+
     private Boolean verified;
+
+    @Formula(value = "LOWER(CONCAT(first_name, ' ', last_name))")
+    private String searchableDetails;
 
 }

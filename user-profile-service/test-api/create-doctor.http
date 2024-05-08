@@ -1,0 +1,10 @@
+POST http://localhost:8080/doctors
+Content-Type: application/json
+
+{
+  "firstName": "Alex9",
+  "lastName": "Dudchenko9",
+  "email": "alex9@mail.com",
+  "verified": true,
+  "birthDate": "1996-12-23"
+}
