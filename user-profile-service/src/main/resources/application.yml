@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-profile-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/profile_service_thesis_db
+    username: profile_service_thesis_admin
+    password: pwd12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# 16/24/32 bytes only so twice as many characters for encryption key
+aes:
+  encryption:
+    key: this-is-test-key
+    algo: AES
+server:
+  port: 8081

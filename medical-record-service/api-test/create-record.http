@@ -1,0 +1,7 @@
+POST http://localhost:8081/records
+Content-Type: application/json
+
+{
+  "patientId": 1
+}
+

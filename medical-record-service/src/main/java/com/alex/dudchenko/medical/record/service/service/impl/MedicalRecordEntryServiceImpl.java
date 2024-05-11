@@ -33,4 +33,9 @@ public class MedicalRecordEntryServiceImpl implements MedicalRecordEntryService 
     public void deleteMedicalRecordEntryById(Long id) {
         medicalRecordEntryRepository.deleteById(id);
     }
+
+    @Override
+    public List<MedicalRecordEntry> findMedicalRecordEntriesByPatientId(Long patientId) {
+        return medicalRecordEntryRepository.findByMedicalRecordPatientId(patientId);
+    }
 }

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: medical-record-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/medical_record_service_thesis_db
+    username: medical_record_service_thesis_admin
+    password: pwd12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8082

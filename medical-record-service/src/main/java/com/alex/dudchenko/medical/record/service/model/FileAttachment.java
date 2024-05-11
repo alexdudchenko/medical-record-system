@@ -14,5 +14,5 @@ public class FileAttachment {
     private String filePath;
     private String fileName;
     @ManyToOne
-    private MedicalRecordEntry MedicalRecordEntry;
+    private MedicalRecordEntry medicalRecordEntry;
 }

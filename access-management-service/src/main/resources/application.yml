@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: access-management-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/access_service_thesis_db
+    username: access_service_thesis_admin
+    password: pwd12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8083

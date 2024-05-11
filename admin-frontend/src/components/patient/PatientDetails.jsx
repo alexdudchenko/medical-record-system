@@ -87,7 +87,7 @@ export default function PatientDetails() {
                            name="email"
                            onChange={(e) => setEmail(e.target.value)}
                     />
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Uid</FormLabel>
                     <Input type="text"
                            value={uid}
                            name="uid"

@@ -18,9 +18,14 @@ public class MedicalEntryController {
 
     private final MedicalRecordEntryService medicalRecordEntryService;
 
-    @GetMapping
+    @GetMapping(params = "medicalRecordId")
     public ResponseEntity<List<MedicalRecordEntry>> getMedicalRecordEntries(@RequestParam Long medicalRecordId) {
         return ResponseEntity.ok(medicalRecordEntryService.findMedicalRecordEntryByMedicalRecordId(medicalRecordId));
+    }
+
+    @GetMapping(params = "patientId")
+    public ResponseEntity<List<MedicalRecordEntry>> getMedicalRecordEntriesByPatientId(@RequestParam Long patientId) {
+        return ResponseEntity.ok(medicalRecordEntryService.findMedicalRecordEntriesByPatientId(patientId));
     }
 
     @GetMapping("/{id}")

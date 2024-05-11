@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_service_thesis_db
+    username: auth_service_thesis_admin
+    password: pwd12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8084
+
+jwt:
+  secret: secretValue
+  expiration: 86400

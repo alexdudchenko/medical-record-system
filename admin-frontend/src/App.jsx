@@ -8,6 +8,7 @@ import PatientsPage from "./components/patient/PatientsPage.jsx";
 import DoctorApplication from "./components/verification/DoctorApplication.jsx";
 import DoctorDetails from "./components/doctor/DoctorDetails.jsx";
 import PatientDetails from "./components/patient/PatientDetails.jsx";
+import Home from "./components/home/Home.jsx";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/verify/doctor/:id" element={<DoctorApplication/>}/>
                     <Route path="/doctors/:id" element={<DoctorDetails/>}/>
                     <Route path="/patients/:id" element={<PatientDetails/>}/>
+                    <Route path="/" element={<Home/>}/>
                 </Routes>
             </Flex>
         </>

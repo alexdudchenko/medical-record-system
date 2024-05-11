@@ -10,5 +10,6 @@ public interface MedicalRecordEntryService {
     MedicalRecordEntry findMedicalRecordEntryById(Long id);
     List<MedicalRecordEntry> findMedicalRecordEntryByMedicalRecordId(Long medicalRecordId);
     void deleteMedicalRecordEntryById(Long id);
+    List<MedicalRecordEntry> findMedicalRecordEntriesByPatientId(Long patientId);
 
 }
