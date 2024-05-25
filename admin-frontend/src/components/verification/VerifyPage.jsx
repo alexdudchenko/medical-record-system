@@ -1,19 +1,20 @@
 import {useEffect, useState} from "react";
-import {getAllUnverifiedDoctors} from "../../service/DoctorService.js";
 import UserProfilePreview from "../common/user-profile/UserProfilePreview.jsx";
 import {Flex, Heading} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 
 export default function VerifyPage() {
 
     const [unverifiedDoctors, setUnverifiedDoctors] = useState([])
+    const axiosPrivate = useAxiosPrivate()
 
     useEffect(() => {
         getUnverifiedDoctors()
     }, []);
 
     function getUnverifiedDoctors() {
-        getAllUnverifiedDoctors()
+        axiosPrivate.get("/doctors?verified=false")
             .then((response) => {
                     setUnverifiedDoctors(response.data)
                 }

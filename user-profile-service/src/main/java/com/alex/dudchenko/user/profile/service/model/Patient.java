@@ -2,17 +2,12 @@ package com.alex.dudchenko.user.profile.service.model;
 
 import com.alex.dudchenko.user.profile.service.config.AesEncryptor;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
+@Data
 @Entity
 public class Patient {
 
@@ -31,6 +26,17 @@ public class Patient {
 
     @Convert(converter = AesEncryptor.class)
     private LocalDate birthDate;
+
+    private String gender;
+
+    private String personalPhoneNumber;
+
+    private String workPhoneNumber;
+
+    private String company;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     @Formula(value = "LOWER(CONCAT(first_name, ' ', last_name, ' ', uid))")
     private String searchableDetails;

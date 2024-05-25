@@ -12,5 +12,5 @@ server:
   port: 8084
 
 jwt:
-  secret: secretValue
+  secret: secretValuesecretValuesecretValuesecretValuesecretValue
   expiration: 86400

@@ -1,25 +1,25 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import {SearchIcon} from "@chakra-ui/icons"
-import {getAllPatients, getPatientsByPattern} from "../../../service/PatientService.js";
-import {getAllDoctors, getDoctorsByPattern} from "../../../service/DoctorService.js";
 import {useEffect, useState} from "react";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.js";
 
 export default function SearchBar( {setData, searchCollection} ) {
 
     const [pattern, setPattern] = useState("")
+    const axiosPrivate = useAxiosPrivate()
 
     useEffect(() => {
         const searchByPattern = pattern => {
             console.log(pattern)
             let req
             if (searchCollection === "patients" && pattern) {
-                req = getPatientsByPattern(pattern)
+                req = axiosPrivate.get("/patients?pattern=" + pattern)
             } else if (searchCollection === "doctors" && pattern) {
-                req = getDoctorsByPattern(pattern)
+                req = axiosPrivate.get("/doctors?pattern=" + pattern)
             } else if (searchCollection === "patients") {
-                req = getAllPatients()
+                req = axiosPrivate.get("/patients")
             } else if (searchCollection === "doctors") {
-                req = getAllDoctors()
+                req = axiosPrivate.get("/doctors")
             } else {
                 throw new Error("We can search either patients or doctors")
             }

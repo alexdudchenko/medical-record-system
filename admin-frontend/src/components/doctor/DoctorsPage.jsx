@@ -1,20 +1,21 @@
 import {useEffect, useState} from "react";
-import {getAllDoctors} from "../../service/DoctorService.js";
 import UserProfilePreview from "../common/user-profile/UserProfilePreview.jsx";
 import {Flex, Heading} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import SearchBar from "../common/search/SearchBar.jsx";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 
 export default function VerifyPage() {
 
     const [doctors, setDoctors] = useState([])
+    const axiosPrivate = useAxiosPrivate()
 
     useEffect(() => {
         getDoctors()
     }, []);
 
     function getDoctors() {
-        getAllDoctors()
+        axiosPrivate.get("/doctors")
             .then((response) => {
                     setDoctors(response.data)
                 }

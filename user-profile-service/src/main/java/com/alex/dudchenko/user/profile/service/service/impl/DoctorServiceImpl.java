@@ -48,4 +48,9 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> findUnverifiedDoctors() {
         return doctorRepository.findDoctorByVerified(Boolean.FALSE);
     }
+
+    @Override
+    public List<Doctor> findDoctorsByIds(List<Long> ids) {
+        return doctorRepository.findAllById(ids);
+    }
 }

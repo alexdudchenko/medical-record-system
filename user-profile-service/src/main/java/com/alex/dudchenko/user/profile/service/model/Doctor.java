@@ -1,17 +1,13 @@
 package com.alex.dudchenko.user.profile.service.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
+import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
+@Data
 @Entity
 public class Doctor {
 
@@ -29,6 +25,12 @@ public class Doctor {
     private LocalDate birthDate;
 
     private Boolean verified;
+
+    @ManyToMany
+    @JoinTable(name="doctor_specialisation",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialisation_id"))
+    private Set<Specialisation> specialisations;
 
     @Formula(value = "LOWER(CONCAT(first_name, ' ', last_name))")
     private String searchableDetails;

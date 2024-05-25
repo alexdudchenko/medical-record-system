@@ -13,4 +13,5 @@ public interface DoctorService {
     List<Doctor> findDoctorByEmail(String email);
     List<Doctor> findDoctorsByPattern(String pattern);
     List<Doctor> findUnverifiedDoctors();
+    List<Doctor> findDoctorsByIds(List<Long> ids);
 }

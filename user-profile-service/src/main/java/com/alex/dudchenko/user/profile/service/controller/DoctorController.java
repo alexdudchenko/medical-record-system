@@ -5,12 +5,12 @@ import com.alex.dudchenko.user.profile.service.service.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/doctors")
 @AllArgsConstructor
-@CrossOrigin("*")
 public class DoctorController {
 
     private final DoctorService doctorService;
@@ -38,6 +38,15 @@ public class DoctorController {
     @GetMapping(params = "pattern")
     public List<Doctor> getDoctorsByPattern(@RequestParam String pattern) {
         return doctorService.findDoctorsByPattern(pattern);
+    }
+
+    @GetMapping(params = "ids")
+    public List<Doctor> getDoctorsByIds(@RequestParam String ids) {
+        List<Long> idsList = Arrays.stream(ids.split(","))
+                .map(Long::parseLong)
+                .toList();
+
+        return doctorService.findDoctorsByIds(idsList);
     }
 
     @PostMapping

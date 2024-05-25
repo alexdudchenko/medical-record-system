@@ -12,15 +12,19 @@ import {
     FormLabel,
     Input, useDisclosure
 } from "@chakra-ui/react";
-import {deletePatientById, getPatientById, updatePatient} from "../../service/PatientService.js";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 
 export default function PatientDetails() {
+
+    const axiosPrivate = useAxiosPrivate()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [birthDate, setBirthDate] = useState("")
     const [email, setEmail] = useState("")
     const [uid, setUid] = useState("")
+    const [password, setPassword] = useState("")
+    const [profileId, setProfileId] = useState("")
 
     const {id} = useParams()
 
@@ -30,12 +34,9 @@ export default function PatientDetails() {
     const cancelRef = React.useRef()
 
     useEffect(() => {
-        getPatientInfo(id)
-    }, [id]);
-
-    function getPatientInfo(id) {
-        getPatientById(id)
+        axiosPrivate.get(`/patients/${id}`)
             .then(res => {
+                setProfileId(res.data.id)
                 setFirstName(res.data.firstName)
                 setLastName(res.data.lastName)
                 setBirthDate(res.data.birthDate)
@@ -43,19 +44,32 @@ export default function PatientDetails() {
                 setUid(res.data.uid)
             })
             .catch(err => console.error(err))
-    }
+    }, []);
 
     function updatePatientDetails() {
         const patient = {id, firstName, lastName, birthDate, email, uid}
-        console.log(patient)
-        updatePatient(id, patient)
+
+        axiosPrivate.put(`/patients/${id}`, patient)
             .then(() => navigator("/patients"))
             .catch(err => console.error(err))
     }
 
     function deletePatientDetails() {
-        deletePatientById(id)
+        axiosPrivate.delete(`/patients/${id}`)
             .then(() => navigator(("/patients")))
+            .catch(err => console.error(err))
+    }
+
+    function updatePassword() {
+        axiosPrivate.put(`/auth/users/${id}`,
+            {
+                id: id,
+                email: email,
+                role: "PATIENT",
+                profileId: profileId,
+                hashedPassword: password
+            }
+        )
             .catch(err => console.error(err))
     }
 
@@ -96,6 +110,17 @@ export default function PatientDetails() {
                     <ButtonGroup>
                         <Button type="submit" onClick={updatePatientDetails}>Update patient details</Button>
                         <Button colorScheme="red" onClick={onOpen}>Delete {"patient's"} profile</Button>
+                    </ButtonGroup>
+                </FormControl>
+
+                <FormControl margin="auto">
+                    <FormLabel>Set new password</FormLabel>
+                    <Input type="password"
+                           name="password"
+                           onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <ButtonGroup>
+                        <Button type="submit" onClick={updatePassword}>Update password</Button>
                     </ButtonGroup>
                 </FormControl>
             </Box>

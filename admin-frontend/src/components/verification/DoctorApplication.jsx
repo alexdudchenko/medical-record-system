@@ -1,9 +1,11 @@
-import {deleteDoctorById, getDoctorById, updateDoctor} from "../../service/DoctorService.js";
+
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {Box, Button, ButtonGroup, Text} from "@chakra-ui/react";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 
 export default function DoctorApplication() {
+    const axiosPrivate = useAxiosPrivate()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -15,11 +17,7 @@ export default function DoctorApplication() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        getDoctorInfo(id)
-    }, [id]);
-
-    function getDoctorInfo(id) {
-        getDoctorById(id)
+        axiosPrivate.get(`/doctors/${id}`)
             .then(res => {
                 setFirstName(res.data.firstName)
                 setLastName(res.data.lastName)
@@ -28,7 +26,7 @@ export default function DoctorApplication() {
                 setVerified(res.data.verified)
             })
             .catch(err => console.error(err))
-    }
+    });
 
     function approveCandidate() {
         const doctor = {id, firstName, lastName, birthDate, verified, email}
@@ -36,13 +34,13 @@ export default function DoctorApplication() {
 
         console.log(doctor)
 
-        updateDoctor(id, doctor)
+        axiosPrivate.put(`/doctors/${id}`, doctor)
             .then(() => navigator("/verify"))
             .catch(err => console.error(err))
     }
 
     function rejectApplication() {
-        deleteDoctorById(id)
+        axiosPrivate.delete(`/doctors/${id}`)
             .then(() => navigator("/verify"))
             .catch(err => console.error(err))
     }

@@ -1,0 +1,10 @@
+POST localhost:8080/auth/patients/registration
+Content-Type: application/json
+
+{
+  "firstName": "Alex",
+  "lastName": "Semirazov",
+  "email": "newsurname@gmail.com",
+  "password": "newnew",
+  "birthDate": "2003-06-11"
+}

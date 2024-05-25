@@ -1,0 +1,11 @@
+POST localhost:8080/entries
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUEFUSUVOVCIsInByb2ZpbGVJZCI6IjgiLCJlbWFpbCI6Im5ld3N1cm5hbWVAZ21haWwuY29tIiwiaWQiOiIxIiwic3ViIjoiMSIsImlhdCI6MTcxNTQ2NjUxMSwiZXhwIjoxNzE1NTUyOTExfQ.YqzMaTiTC2hvGjqPSUXStbD__CJr-qV6DQaZFW2nZdTFK8L91r8hVIDgbPfy1Iwb
+
+{
+  "medicalRecord": {
+    "id": 1
+  },
+  "title": "New entry",
+  "description": "Just testing new entry"
+}

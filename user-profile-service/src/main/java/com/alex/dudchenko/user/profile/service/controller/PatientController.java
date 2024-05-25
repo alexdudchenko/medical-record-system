@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 @RestController
 @RequestMapping("/patients")
 @AllArgsConstructor
-@CrossOrigin("*")
 public class PatientController {
 
     private final PatientService patientService;
