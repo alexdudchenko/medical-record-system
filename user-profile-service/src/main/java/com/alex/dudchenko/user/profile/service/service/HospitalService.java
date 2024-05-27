@@ -9,4 +9,5 @@ public interface HospitalService {
     List<Hospital> getHospitals();
     Hospital saveHospital(Hospital hospital);
     void deleteHospitalById(Long id);
+    Hospital getHospital(Long id);
 }

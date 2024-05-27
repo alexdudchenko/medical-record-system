@@ -21,7 +21,8 @@ public class GatewayConfig {
                                         "/patients/**",
                                         "/access-records/**",
                                         "/access-requests/**",
-                                        "/hospitals/**")
+                                        "/hospitals/**",
+                                        "/specialisations/**")
                                 .filters(f -> f.filter(filter))
                                 .uri("lb://user-profile-service")
                 )

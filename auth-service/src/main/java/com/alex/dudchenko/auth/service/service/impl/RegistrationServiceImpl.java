@@ -26,6 +26,8 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .email(data.getEmail())
                 .verified(data.getVerified())
                 .birthDate(data.getBirthDate())
+                .specialisations(data.getSpecialisations())
+                .placesOfWork(data.getPlacesOfWork())
                 .build();
 
         Doctor savedDoctor = doctorProfileService.saveDoctor(doctorProfile);

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import UserProfilePreview from "../common/user-profile/UserProfilePreview.jsx";
-import {Box, Button, ButtonGroup, Flex, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
+import {Box, Button, ButtonGroup, Flex, FormControl, FormLabel, Heading, Input, Spinner, Text} from "@chakra-ui/react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import SearchBar from "../common/search/SearchBar.jsx";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
@@ -23,6 +23,14 @@ export default function EditHospitalForm() {
 
     const retrieveHospitalInfo = async () => {
         const response = await axiosPrivate.get(`/hospitals/${id}`)
+
+        setName(response.data.name)
+        setCountry(response.data.address.country)
+        setCity(response.data.address.city)
+        setLine1(response.data.address.streetLine1)
+        setLine2(response.data.address.streetLine2)
+        setIndex(response.data.address.index)
+
         return response.data
     }
 
@@ -43,7 +51,11 @@ export default function EditHospitalForm() {
         axiosPrivate.put(`/hospitals/${id}`, hospitalInfo).then(() => navigate("/hospitals"))
     }
 
-    const {data: hospital} = useQuery("hospitalData", retrieveHospitalInfo)
+    const {data: hospital, error, isLoading} = useQuery("hospitalData", retrieveHospitalInfo)
+
+    if (isLoading) return <Spinner/>
+
+    if (error) return <Text>Something went wrong</Text>
 
     return (
         <>
@@ -51,38 +63,38 @@ export default function EditHospitalForm() {
                 <FormControl margin="auto">
                     <FormLabel>Hospital name</FormLabel>
                     <Input type="text"
-                           value={hospital.name}
+                           value={name}
                            name="name"
                            onChange={(e) => setName(e.target.value)}
                     />
                     <FormLabel>Country</FormLabel>
                     <Input type="text"
-                           value={hospital.address.country}
-                           name="name"
+                           value={country}
+                           name="country"
                            onChange={(e) => setCountry(e.target.value)}
                     />
                     <FormLabel>City</FormLabel>
                     <Input type="text"
-                           value={hospital.address.city}
-                           name="name"
+                           value={city}
+                           name="city"
                            onChange={(e) => setCity(e.target.value)}
                     />
                     <FormLabel>Street line 1</FormLabel>
                     <Input type="text"
-                           value={hospital.address.streetLine1}
-                           name="name"
+                           value={line1}
+                           name="line1"
                            onChange={(e) => setLine1(e.target.value)}
                     />
                     <FormLabel>Street line 2</FormLabel>
                     <Input type="text"
-                           value={hospital.address.streetLine2}
-                           name="name"
+                           value={line2}
+                           name="line2"
                            onChange={(e) => setLine2(e.target.value)}
                     />
                     <FormLabel>Index</FormLabel>
                     <Input type="text"
-                           value={hospital.address.index}
-                           name="name"
+                           value={index}
+                           name="index"
                            onChange={(e) => setIndex(e.target.value)}
                     />
                     <ButtonGroup>

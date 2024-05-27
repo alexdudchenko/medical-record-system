@@ -2,7 +2,7 @@ package com.alex.dudchenko.auth.service.model.dto;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +15,10 @@ public class Doctor {
     private String email;
     private String birthDate;
     private String verified;
+
+    private Set<Specialisation> specialisations;
+    private Set<DoctorPlaceOfWork> placesOfWork;
+
     private String searchableDetails;
 
 }

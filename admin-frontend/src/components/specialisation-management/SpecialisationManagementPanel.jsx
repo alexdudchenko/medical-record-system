@@ -1,4 +1,3 @@
-
 import {
     Box,
     Button,
@@ -8,18 +7,19 @@ import {
     FormLabel,
     Heading,
     HStack,
-    Input,
+    Input, Spinner,
     Text,
     VStack
 } from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
-import {useQuery} from "react-query";
+import {useMutation, useQuery, useQueryClient} from "react-query";
 import {useState} from "react";
 
 export default function SpecialisationManagementPanel() {
 
     const axiosPrivate = useAxiosPrivate()
+    const queryClient = useQueryClient()
 
     const [name, setName] = useState("")
 
@@ -28,30 +28,41 @@ export default function SpecialisationManagementPanel() {
         return response.data
     }
 
-    const deleteSpecialisation = (id) => {
-        axiosPrivate.delete(`/specialisations/${id}`)
-    }
+    const deleteSpecialisationMutation = useMutation(
+        (id) => {
+            axiosPrivate.delete(`/specialisations/${id}`)
+        }, {
+            onSuccess: queryClient.invalidateQueries("specialisationsData")
+        })
 
-    const createSpecialisation = () => {
-        axiosPrivate.post("/specialisations", {name})
-    }
+    const createSpecialisationMutation = useMutation(() => axiosPrivate.post("/specialisations", {name}),
+        {
+            onSuccess: queryClient.invalidateQueries("specialisationsData")
+        }
+    )
 
     const {
-        data: specialisations
-    } = useQuery("hospitalsData", retrieveSpecialisations);
+        data: specialisations,
+        isLoading,
+        error
+    } = useQuery("specialisationsData", retrieveSpecialisations);
 
+    if (isLoading) return <Spinner/>
+
+    if (error) return "Something happened"
 
     return (
         <>
             <HStack>
-                <VStack>
+                <VStack w="50%">
                     <Heading as="h1">Specialisations</Heading>
                     <Flex direction="column">
                         {
                             specialisations.map((specialisation) => (
                                 <Box key={specialisation.id}>
                                     <Text>{specialisation.name}</Text>
-                                    <Button color="red" onClick={() => deleteSpecialisation(specialisation.id)}>Delete</Button>
+                                    <Button color="red"
+                                            onClick={() => deleteSpecialisationMutation.mutate(specialisation.id)}>Delete</Button>
                                 </Box>
                             ))
                         }
@@ -65,7 +76,7 @@ export default function SpecialisationManagementPanel() {
                                onChange={(e) => setName(e.target.value)}
                         />
                         <ButtonGroup>
-                            <Button type="submit" onClick={createSpecialisation}>Create</Button>
+                            <Button type="submit" onClick={() => createSpecialisationMutation.mutate()}>Create</Button>
                         </ButtonGroup>
                     </FormControl>
                 </Box>

@@ -1,8 +1,11 @@
 package com.alex.dudchenko.user.profile.service.service.impl;
 
 import com.alex.dudchenko.user.profile.service.model.Doctor;
+import com.alex.dudchenko.user.profile.service.model.DoctorPlaceOfWork;
+import com.alex.dudchenko.user.profile.service.repository.DoctorPlaceOfWorkRepository;
 import com.alex.dudchenko.user.profile.service.repository.DoctorRepository;
 import com.alex.dudchenko.user.profile.service.service.DoctorService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +16,16 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final DoctorPlaceOfWorkRepository doctorPlaceOfWorkRepository;
 
     @Override
+    @Transactional
     public Doctor saveDoctor(Doctor doctor) {
-        return doctorRepository.save(doctor);
+        DoctorPlaceOfWork doctorPlaceOfWork = doctor.getPlacesOfWork().get(0);
+        Doctor saved = doctorRepository.save(doctor);
+        doctorPlaceOfWork.setDoctor(saved);
+        doctorPlaceOfWorkRepository.save(doctorPlaceOfWork);
+        return saved;
     }
 
     @Override

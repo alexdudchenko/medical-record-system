@@ -2,10 +2,11 @@ import {axiosPrivate} from "../api/axios.js";
 import useRefreshToken from "./useRefreshToken.js";
 import useAuth from "./useAuth.js";
 import {useEffect} from "react";
+import {decodeJwt} from "jose";
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshToken()
-    const {auth} = useAuth()
+    const {auth, setAuth} = useAuth()
 
     useEffect(() => {
         const requestIntercept = axiosPrivate.interceptors.request.use(
@@ -27,6 +28,17 @@ const useAxiosPrivate = () => {
                 if (err?.response?.status === 401 && !prevReq?.sent) {
                     prevReq.sent = true
                     const newAccessToken = await refresh()
+
+                    const accessTokenDecoded = decodeJwt(newAccessToken)
+
+                    const authData = {
+                        id: accessTokenDecoded.id,
+                        profileId: accessTokenDecoded.profileId,
+                        role: accessTokenDecoded.role,
+                        accessToken: newAccessToken
+                    }
+
+                    setAuth(authData)
                     prevReq.headers["Authorization"] = `Bearer ${newAccessToken}`
                     return axiosPrivate(prevReq)
                 }

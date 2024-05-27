@@ -51,6 +51,7 @@ public class DoctorController {
 
     @PostMapping
     public Doctor createDoctor(@RequestBody Doctor doctor) {
+        System.out.println(doctor);
         return doctorService.saveDoctor(doctor);
     }
 

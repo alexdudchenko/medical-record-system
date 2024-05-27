@@ -6,7 +6,7 @@ import {
     FormLabel,
     Input
 } from "@chakra-ui/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {decodeJwt} from "jose"
 import useAuth from "../../../hooks/useAuth.js";
 import {useLocation, useNavigate} from "react-router-dom";

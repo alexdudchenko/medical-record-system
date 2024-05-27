@@ -37,7 +37,7 @@ export default function Navbar() {
                                 </Link>
                             </Box>
                             <Box>
-                                <Link to="/specialisation" color="white" mx={2}>
+                                <Link to="/specialisations" color="white" mx={2}>
                                     Specialisations
                                 </Link>
                             </Box>

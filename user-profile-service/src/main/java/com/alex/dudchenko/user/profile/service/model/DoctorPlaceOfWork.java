@@ -1,5 +1,6 @@
 package com.alex.dudchenko.user.profile.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,9 +17,12 @@ public class DoctorPlaceOfWork {
 
     private String position;
 
+    private Boolean isDefault;
+
     @ManyToOne
     private Hospital hospital;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Doctor doctor;
 }

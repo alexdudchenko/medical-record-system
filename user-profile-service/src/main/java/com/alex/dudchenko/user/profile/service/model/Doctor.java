@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -31,6 +32,9 @@ public class Doctor {
             joinColumns = @JoinColumn(name = "doctor_id"),
             inverseJoinColumns = @JoinColumn(name = "specialisation_id"))
     private Set<Specialisation> specialisations;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<DoctorPlaceOfWork> placesOfWork;
 
     @Formula(value = "LOWER(CONCAT(first_name, ' ', last_name))")
     private String searchableDetails;

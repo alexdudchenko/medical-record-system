@@ -19,6 +19,11 @@ public class HospitalController {
         return hospitalService.getHospitals();
     }
 
+    @GetMapping("/{id}")
+    public Hospital getHospital(@PathVariable Long id) {
+        return hospitalService.getHospital(id);
+    }
+
     @PostMapping
     public Hospital createHospital(@RequestBody Hospital hospital) {
         return hospitalService.saveHospital(hospital);

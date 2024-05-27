@@ -29,4 +29,9 @@ public class HospitalServiceImpl implements HospitalService {
     public void deleteHospitalById(Long id) {
         hospitalRepository.deleteById(id);
     }
+
+    @Override
+    public Hospital getHospital(Long id) {
+        return hospitalRepository.findById(id).orElseThrow();
+    }
 }
