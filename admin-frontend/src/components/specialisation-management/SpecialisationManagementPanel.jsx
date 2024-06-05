@@ -11,7 +11,6 @@ import {
     Text,
     VStack
 } from "@chakra-ui/react";
-import {Link} from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {useState} from "react";

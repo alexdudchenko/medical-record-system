@@ -19,13 +19,8 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorPlaceOfWorkRepository doctorPlaceOfWorkRepository;
 
     @Override
-    @Transactional
     public Doctor saveDoctor(Doctor doctor) {
-        DoctorPlaceOfWork doctorPlaceOfWork = doctor.getPlacesOfWork().get(0);
-        Doctor saved = doctorRepository.save(doctor);
-        doctorPlaceOfWork.setDoctor(saved);
-        doctorPlaceOfWorkRepository.save(doctorPlaceOfWork);
-        return saved;
+        return doctorRepository.save(doctor);
     }
 
     @Override

@@ -16,6 +16,15 @@ export default function Registration() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [birthDate, setBirthDate] = useState("")
+    const [gender, setGender] = useState("")
+    const [personalPhoneNumber, setPersonalPhoneNumber] = useState("")
+    const [workPhoneNumber, setWorkPhoneNumber] = useState("")
+    const [company, setCompany] = useState("")
+    const [country, setCountry] = useState("")
+    const [city, setCity] = useState("")
+    const [streetLine1, setStreetLine1] = useState("")
+    const [streetLine2, setStreetLine2] = useState("")
+    const [index, setIndex] = useState("")
 
     const navigate = useNavigate()
 
@@ -25,7 +34,18 @@ export default function Registration() {
             lastName,
             email,
             password,
-            birthDate
+            birthDate,
+            gender,
+            personalPhoneNumber,
+            workPhoneNumber,
+            company,
+            address: {
+                country,
+                city,
+                streetLine1,
+                streetLine2,
+                index
+            }
         })
             .then(
                 () => {
@@ -69,6 +89,51 @@ export default function Registration() {
                     <Input type="text"
                            name="birthDate"
                            onChange={(e) => setBirthDate(e.target.value)}
+                    />
+                    <FormLabel>Gender</FormLabel>
+                    <Input type="text"
+                           name="gender"
+                           onChange={(e) => setGender(e.target.value)}
+                    />
+                    <FormLabel>Personal Phone Number</FormLabel>
+                    <Input type="text"
+                           name="personalPhoneNumber"
+                           onChange={(e) => setPersonalPhoneNumber(e.target.value)}
+                    />
+                    <FormLabel>Work Phone Number</FormLabel>
+                    <Input type="text"
+                           name="workPhoneNumber"
+                           onChange={(e) => setWorkPhoneNumber(e.target.value)}
+                    />
+                    <FormLabel>Company</FormLabel>
+                    <Input type="text"
+                           name="company"
+                           onChange={(e) => setCompany(e.target.value)}
+                    />
+                    <FormLabel>Country</FormLabel>
+                    <Input type="text"
+                           name="country"
+                           onChange={(e) => setCountry(e.target.value)}
+                    />
+                    <FormLabel>City</FormLabel>
+                    <Input type="text"
+                           name="city"
+                           onChange={(e) => setCity(e.target.value)}
+                    />
+                    <FormLabel>Address line 1</FormLabel>
+                    <Input type="text"
+                           name="streetLine1"
+                           onChange={(e) => setStreetLine1(e.target.value)}
+                    />
+                    <FormLabel>Address line 2</FormLabel>
+                    <Input type="text"
+                           name="streetLine2"
+                           onChange={(e) => setStreetLine2(e.target.value)}
+                    />
+                    <FormLabel>Index</FormLabel>
+                    <Input type="text"
+                           name="index"
+                           onChange={(e) => setIndex(e.target.value)}
                     />
                     <ButtonGroup>
                         <Button type="submit" onClick={handleRegistrationFormSubmission}>Register</Button>

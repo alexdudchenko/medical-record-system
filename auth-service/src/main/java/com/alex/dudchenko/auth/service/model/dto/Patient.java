@@ -15,5 +15,10 @@ public class Patient {
     private String email;
     private String uid;
     private String birthDate;
+    private String gender;
+    private String personalPhoneNumber;
+    private String workPhoneNumber;
+    private String company;
+    private Address address;
     private String searchableDetails;
 }

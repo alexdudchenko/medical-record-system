@@ -33,7 +33,8 @@ public class Doctor {
             inverseJoinColumns = @JoinColumn(name = "specialisation_id"))
     private Set<Specialisation> specialisations;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "doctor_id")
     private List<DoctorPlaceOfWork> placesOfWork;
 
     @Formula(value = "LOWER(CONCAT(first_name, ' ', last_name))")

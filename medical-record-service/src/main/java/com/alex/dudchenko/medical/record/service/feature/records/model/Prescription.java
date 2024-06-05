@@ -3,6 +3,8 @@ package com.alex.dudchenko.medical.record.service.feature.records.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 public class Prescription {
@@ -25,6 +27,12 @@ public class Prescription {
     private String frequency;
 
     private String specialInstructions;
+
+    private LocalDate creationDate;
+
+    private LocalDate expirationDate;
+
+    private Long authorId;
 
     @ManyToOne
     private MedicalRecord medicalRecord;

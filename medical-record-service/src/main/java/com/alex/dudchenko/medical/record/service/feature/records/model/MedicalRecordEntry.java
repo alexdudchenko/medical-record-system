@@ -13,6 +13,8 @@ public class MedicalRecordEntry {
     private Long id;
     private String title;
     private String description;
+    private String diagnosis;
+    private String treatmentPlan;
     @ManyToOne
     private MedicalRecord medicalRecord;
 }

@@ -13,4 +13,9 @@ public class PatientRegistrationData {
     private String password;
     private String uid;
     private String birthDate;
+    private String gender;
+    private String personalPhoneNumber;
+    private String workPhoneNumber;
+    private String company;
+    private Address address;
 }

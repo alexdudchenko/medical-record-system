@@ -49,6 +49,11 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .lastName(data.getLastName())
                 .email(data.getEmail())
                 .birthDate(data.getBirthDate())
+                .gender(data.getGender())
+                .personalPhoneNumber(data.getPersonalPhoneNumber())
+                .workPhoneNumber(data.getWorkPhoneNumber())
+                .company(data.getCompany())
+                .address(data.getAddress())
                 .build();
         Patient savedPatient = patientProfileService.savePatient(patientProfile);
 

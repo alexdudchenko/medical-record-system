@@ -1,6 +1,7 @@
 package com.alex.dudchenko.medical.record.service.feature.access.controller;
 
 import com.alex.dudchenko.medical.record.service.feature.access.model.AccessRecord;
+import com.alex.dudchenko.medical.record.service.feature.access.model.dto.AccessRecordDto;
 import com.alex.dudchenko.medical.record.service.feature.access.service.AccessRecordService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class AccessRecordController {
     }
 
     @PostMapping
-    public AccessRecord createAccessRecord(@RequestBody AccessRecord accessRecord) {
+    public AccessRecord createAccessRecord(@RequestBody AccessRecordDto accessRecord) {
         return accessRecordService.createAccessRecord(accessRecord);
     }
 

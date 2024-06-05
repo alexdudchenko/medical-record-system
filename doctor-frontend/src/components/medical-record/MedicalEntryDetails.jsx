@@ -24,6 +24,12 @@ export default function MedicalEntryDetails() {
                 <Text align="left">
                     {entry.description}
                 </Text>
+                <Text align="left">
+                    {entry.diagnosis}
+                </Text>
+                <Text align="left">
+                    {entry.treatmentPlan}
+                </Text>
             </Stack>
         </>
     )

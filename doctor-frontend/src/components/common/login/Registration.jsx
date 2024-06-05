@@ -4,7 +4,7 @@ import {
     ButtonGroup, Checkbox, CheckboxGroup,
     FormControl,
     FormLabel,
-    Input, MenuItemOption, Select, Spinner, Text, VStack
+    Input, Select, Spinner, Text, VStack
 } from "@chakra-ui/react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -58,6 +58,7 @@ export default function Registration() {
             email,
             password,
             birthDate,
+            verified: false,
             specialisations: specialisationObjects,
             placesOfWork: [
                 {

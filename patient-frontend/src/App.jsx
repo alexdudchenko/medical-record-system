@@ -10,6 +10,9 @@ import MedicalEntryDetails from "./components/medical-record/MedicalEntryDetails
 import Registration from "./components/common/login/Registration.jsx";
 import AccessControl from "./components/access-control/AccessControl.jsx";
 import MyProfile from "./components/my-profile/MyProfile.jsx";
+import ListVaccinations from "./components/vaccinations/ListVaccinations.jsx";
+import ListPrescriptions from "./components/prescriptions/ListPrescriptions.jsx";
+import ListReferrals from "./components/referrals/ListReferrals.jsx";
 
 function App() {
 
@@ -27,6 +30,9 @@ function App() {
                         <Route path="/medical-record/:entryId" element={<MedicalEntryDetails/>}/>
                         <Route path="/access" element={<AccessControl/>}/>
                         <Route path="/my-profile" element={<MyProfile/>}/>
+                        <Route path="/medical-record/vaccinations" element={<ListVaccinations/>}/>
+                        <Route path="/medical-record/prescriptions" element={<ListPrescriptions/>}/>
+                        <Route path="/medical-record/referrals" element={<ListReferrals/>}/>
                     </Route>
                 </Routes>
             </Flex>

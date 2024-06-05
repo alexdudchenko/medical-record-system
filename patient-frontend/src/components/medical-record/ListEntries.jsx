@@ -1,7 +1,7 @@
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
-import {Flex, Heading} from "@chakra-ui/react";
+import {Flex, Heading, HStack} from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth.js";
 
 export default function ListEntries() {
@@ -22,6 +22,17 @@ export default function ListEntries() {
     return (
         <>
             <Heading as="h1">Entries</Heading>
+            <HStack>
+                <Link to={`/medical-record/vaccinations`}>
+                    Vaccinations
+                </Link>
+                <Link to={`/medical-record/prescriptions`}>
+                    Prescriptions
+                </Link>
+                <Link to={`/medical-record/referrals`}>
+                    Referrals
+                </Link>
+            </HStack>
             <Flex justify="flex-start" direction="column">
                 {
                     medicalEntries.map((entry) => (

@@ -17,22 +17,32 @@ public class GatewayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("user-profile-service",
-                        r -> r.path("/doctors/**",
+                        r -> r.path(
+                                        "/doctors/**",
                                         "/patients/**",
-                                        "/access-records/**",
-                                        "/access-requests/**",
                                         "/hospitals/**",
-                                        "/specialisations/**")
+                                        "/specialisations/**"
+                                )
                                 .filters(f -> f.filter(filter))
                                 .uri("lb://user-profile-service")
                 )
                 .route("auth-service",
-                        r -> r.path("/auth/**")
+                        r -> r.path(
+                                        "/auth/**"
+                                )
                                 .filters(f -> f.filter(filter))
                                 .uri("lb://auth-service")
                 )
                 .route("medical-record-service",
-                        r -> r.path("/records/**", "/entries/**")
+                        r -> r.path(
+                                        "/records/**",
+                                        "/entries/**",
+                                        "/access-records/**",
+                                        "/access-requests/**",
+                                        "/prescriptions/**",
+                                        "/vaccinations/**",
+                                        "/referrals/**"
+                                )
                                 .filters(f -> f.filter(filter))
                                 .uri("lb://medical-record-service")
                 )

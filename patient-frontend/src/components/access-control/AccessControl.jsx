@@ -48,7 +48,7 @@ export default function AccessControl() {
             const fetchData = async () => {
                 const accessRecordsRes = await axiosPrivate.get(`/access-records?patientId=${auth.profileId}`)
                 const accessRecords = accessRecordsRes.data;
-
+                console.log(accessRecords)
                 if (accessRecords.length > 0) {
                     const ids = accessRecords
                         .map(req => req.doctorId)

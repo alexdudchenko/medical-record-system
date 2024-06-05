@@ -11,8 +11,6 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         const handleLoad = async () => {
             if (Object.keys(auth).length === 0) {
-                console.log("helflfdl")
-
                 const newAccessToken = await refresh()
 
                 const accessTokenDecoded = decodeJwt(newAccessToken)

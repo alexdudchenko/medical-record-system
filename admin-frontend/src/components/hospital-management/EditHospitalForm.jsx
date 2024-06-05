@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from "react";
-import UserProfilePreview from "../common/user-profile/UserProfilePreview.jsx";
-import {Box, Button, ButtonGroup, Flex, FormControl, FormLabel, Heading, Input, Spinner, Text} from "@chakra-ui/react";
-import {Link, useNavigate, useParams} from "react-router-dom";
-import SearchBar from "../common/search/SearchBar.jsx";
+import {useState} from "react";
+import {Box, Button, ButtonGroup, FormControl, FormLabel, Input, Spinner, Text} from "@chakra-ui/react";
+import {useNavigate, useParams} from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 import {useQuery} from "react-query";
 

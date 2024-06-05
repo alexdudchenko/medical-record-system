@@ -1,7 +1,7 @@
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {VStack, Text, Stack} from "@chakra-ui/react";
+import {Text, Stack} from "@chakra-ui/react";
 
 export default function MedicalEntryDetails() {
 
@@ -23,6 +23,12 @@ export default function MedicalEntryDetails() {
                 </Text>
                 <Text align="left">
                     {entry.description}
+                </Text>
+                <Text align="left">
+                    {entry.diagnosis}
+                </Text>
+                <Text align="left">
+                    {entry.treatmentPlan}
                 </Text>
             </Stack>
         </>

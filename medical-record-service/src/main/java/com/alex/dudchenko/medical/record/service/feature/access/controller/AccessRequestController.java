@@ -2,6 +2,7 @@ package com.alex.dudchenko.medical.record.service.feature.access.controller;
 
 
 import com.alex.dudchenko.medical.record.service.feature.access.model.AccessRequest;
+import com.alex.dudchenko.medical.record.service.feature.access.model.dto.AccessRequestDto;
 import com.alex.dudchenko.medical.record.service.feature.access.service.AccessRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +33,13 @@ public class AccessRequestController {
     }
 
     @PostMapping
-    public AccessRequest createAccessRequest(@RequestBody AccessRequest accessRequest) {
+    public AccessRequest createAccessRequest(@RequestBody AccessRequestDto accessRequest) {
         return accessRequestService.save(accessRequest);
     }
 
     @PutMapping("/{id}")
     public AccessRequest updateAccessRequest(@RequestBody AccessRequest accessRequest) {
-        return accessRequestService.save(accessRequest);
+        return accessRequestService.update(accessRequest);
     }
 
     @DeleteMapping("/{id}")

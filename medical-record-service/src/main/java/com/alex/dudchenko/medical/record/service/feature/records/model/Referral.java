@@ -18,6 +18,8 @@ public class Referral {
 
     private Long doctorId;
 
+    private String specialist;
+
     private LocalDate creationDate;
 
     private LocalDate expirationDate;

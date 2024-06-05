@@ -1,7 +1,7 @@
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.js";
 import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
-import {Flex, Heading} from "@chakra-ui/react";
+import {Flex, Heading, HStack} from "@chakra-ui/react";
 
 export default function ListEntries() {
 
@@ -21,9 +21,32 @@ export default function ListEntries() {
     return (
         <>
             <Heading as="h1">Entries</Heading>
-            <Link to={"create"}>
-                Create new entry
-            </Link>
+            <HStack width="50%">
+                <Link to={"create"}>
+                    Create new entry
+                </Link>
+                <Link to={`/patients/${id}/medical-record/vaccinations/create`}>
+                    Create Vaccination
+                </Link>
+                <Link to={`/patients/${id}/medical-record/prescriptions/create`}>
+                    Create Prescription
+                </Link>
+
+                <Link to={`/patients/${id}/medical-record/referrals/create`}>
+                    Create Referral
+                </Link>
+            </HStack>
+            <HStack>
+                <Link to={`/patients/${id}/medical-record/vaccinations`}>
+                    Vaccinations
+                </Link>
+                <Link to={`/patients/${id}/medical-record/prescriptions`}>
+                    Prescriptions
+                </Link>
+                <Link to={`/patients/${id}/medical-record/referrals`}>
+                    Referrals
+                </Link>
+            </HStack>
             <Flex justify="flex-start" direction="column">
                 {
                     medicalEntries.map((entry) => (

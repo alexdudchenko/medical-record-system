@@ -1,12 +1,10 @@
 package com.alex.dudchenko.auth.service.service.impl;
 
 import com.alex.dudchenko.auth.service.model.UserCredentials;
-import com.alex.dudchenko.auth.service.model.dto.RefreshRequest;
 import com.alex.dudchenko.auth.service.service.AuthenticationService;
 import com.alex.dudchenko.auth.service.service.UserCredentialsService;
 import com.alex.dudchenko.auth.service.util.JwtUtils;
 import com.alex.dudchenko.auth.service.model.dto.AuthRequest;
-import com.alex.dudchenko.auth.service.model.dto.AuthResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.security.crypto.password.PasswordEncoder;

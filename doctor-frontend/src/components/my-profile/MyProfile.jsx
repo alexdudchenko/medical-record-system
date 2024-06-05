@@ -18,6 +18,7 @@ import useAuth from "../../hooks/useAuth.js";
 export default function MyProfile() {
 
     const axiosPrivate = useAxiosPrivate()
+    const {setAuth} = useAuth()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -115,8 +116,8 @@ export default function MyProfile() {
                            onChange={(e) => setUid(e.target.value)}
                     />
                     <ButtonGroup>
-                        <Button type="submit" onClick={updatePatientDetails}>Update patient details</Button>
-                        <Button colorScheme="red" onClick={onOpen}>Delete {"patient's"} profile</Button>
+                        <Button type="submit" onClick={updatePatientDetails}>Update doctor details</Button>
+                        <Button colorScheme="red" onClick={onOpen}>Delete {"doctor's"} profile</Button>
                     </ButtonGroup>
                 </FormControl>
 
