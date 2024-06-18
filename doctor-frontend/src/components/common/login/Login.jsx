@@ -51,7 +51,7 @@ export default function Login() {
 
     return (
         <>
-            <Box w="50%" margin="auto">
+            <Box w="25%" margin="auto" marginTop="10px">
                 <FormControl margin="auto">
                     <FormLabel>Email</FormLabel>
                     <Input type="text"
@@ -63,7 +63,7 @@ export default function Login() {
                            name="password"
                            onChange={(e) => setPwd(e.target.value)}
                     />
-                    <ButtonGroup>
+                    <ButtonGroup marginTop="10px">
                         <Button type="submit" onClick={handleLoginFormSubmission}>Login</Button>
                     </ButtonGroup>
                 </FormControl>

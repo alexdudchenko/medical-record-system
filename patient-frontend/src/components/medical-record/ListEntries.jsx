@@ -22,7 +22,7 @@ export default function ListEntries() {
     return (
         <>
             <Heading as="h1">Entries</Heading>
-            <HStack>
+            <HStack margin="auto">
                 <Link to={`/medical-record/vaccinations`}>
                     Vaccinations
                 </Link>

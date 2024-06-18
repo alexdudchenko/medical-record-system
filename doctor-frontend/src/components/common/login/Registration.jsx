@@ -98,78 +98,78 @@ export default function Registration() {
 
     return (
         <>
-        <Box w="50%" margin="auto">
-            <FormControl margin="auto">
-                <FormLabel>First name</FormLabel>
-                <Input type="text"
-                       name="firstName"
-                       onChange={(e) => setFirstName(e.target.value)}
-                />
-                <FormLabel>Last name</FormLabel>
-                <Input type="text"
-                       name="lastName"
-                       onChange={(e) => setLastName(e.target.value)}
-                />
-                <FormLabel>Email</FormLabel>
-                <Input type="text"
-                       name="email"
-                       onChange={(e) => setEmail(e.target.value)}
-                />
-                <FormLabel>Password</FormLabel>
-                <Input type="password"
-                       name="password"
-                       onChange={(e) => setPassword(e.target.value)}
-                />
-                <FormLabel>Birth date in format yyyy-MM-dd</FormLabel>
-                <Input type="text"
-                       name="birthDate"
-                       onChange={(e) => setBirthDate(e.target.value)}
-                />
+            <Box w="25%" margin="auto" marginTop="10px">
+                <FormControl margin="auto">
+                    <FormLabel>First name</FormLabel>
+                    <Input type="text"
+                           name="firstName"
+                           onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    <FormLabel>Last name</FormLabel>
+                    <Input type="text"
+                           name="lastName"
+                           onChange={(e) => setLastName(e.target.value)}
+                    />
+                    <FormLabel>Email</FormLabel>
+                    <Input type="text"
+                           name="email"
+                           onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <FormLabel>Password</FormLabel>
+                    <Input type="password"
+                           name="password"
+                           onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <FormLabel>Birth date in format yyyy-MM-dd</FormLabel>
+                    <Input type="text"
+                           name="birthDate"
+                           onChange={(e) => setBirthDate(e.target.value)}
+                    />
 
-                <Text>Pick your specialisations</Text>
-                <CheckboxGroup
-                    value={selectedSpecializations}
-                    onChange={handleSpecializationChange}
-                >
-                    <VStack align="start">
-                        {specialisations.map((specialization) => (
-                            <Checkbox
-                                key={specialization.id}
-                                value={specialization.id.toString()}
-                            >
-                                {specialization.name}
-                            </Checkbox>
+                    <Text marginTop="10px">Pick your specialisations</Text>
+                    <CheckboxGroup
+                        value={selectedSpecializations}
+                        onChange={handleSpecializationChange}
+                    >
+                        <VStack align="start">
+                            {specialisations.map((specialization) => (
+                                <Checkbox
+                                    key={specialization.id}
+                                    value={specialization.id.toString()}
+                                >
+                                    {specialization.name}
+                                </Checkbox>
+                            ))}
+                        </VStack>
+                    </CheckboxGroup>
+
+                    <Text marginTop="10px">Enter your primary place of work</Text>
+                    <Select placeholder="Select hospital" onChange={(e) => {
+                        setHospitalId(e.target.value)
+                    }}>
+                        {hospitals.map((hospital) => (
+                            <option key={"Hospital" + hospital.id} value={hospital.id.toString()}>
+                                {hospital.name}
+                            </option>
                         ))}
-                    </VStack>
-                </CheckboxGroup>
+                    </Select>
 
-                <Text>Enter your primary place of work</Text>
-                <Select placeholder="Select hospital" onChange={(e) => {
-                    setHospitalId(e.target.value)
-                }}>
-                {hospitals.map((hospital) => (
-                    <option key={"Hospital" + hospital.id} value={hospital.id.toString()}>
-                    {hospital.name}
-                </option>
-                ))}
-            </Select>
+                    <FormLabel>Office</FormLabel>
+                    <Input type="text"
+                           name="office"
+                           onChange={(e) => setOffice(e.target.value)}
+                    />
+                    <FormLabel>Position</FormLabel>
+                    <Input type="text"
+                           name="position"
+                           onChange={(e) => setPosition(e.target.value)}
+                    />
 
-            <FormLabel>Office</FormLabel>
-            <Input type="text"
-                   name="office"
-                   onChange={(e) => setOffice(e.target.value)}
-            />
-            <FormLabel>Position</FormLabel>
-            <Input type="text"
-                   name="position"
-                   onChange={(e) => setPosition(e.target.value)}
-            />
-
-            <ButtonGroup>
-                <Button type="submit" onClick={handleRegistrationFormSubmission}>Register</Button>
-            </ButtonGroup>
-        </FormControl>
-        </Box>
-</>
-)
+                    <ButtonGroup margin="10px">
+                        <Button type="submit" onClick={handleRegistrationFormSubmission}>Register</Button>
+                    </ButtonGroup>
+                </FormControl>
+            </Box>
+        </>
+    )
 }

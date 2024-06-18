@@ -21,7 +21,7 @@ export default function ListEntries() {
     return (
         <>
             <Heading as="h1">Entries</Heading>
-            <HStack width="50%">
+            <HStack margin="auto">
                 <Link to={"create"}>
                     Create new entry
                 </Link>
@@ -36,7 +36,7 @@ export default function ListEntries() {
                     Create Referral
                 </Link>
             </HStack>
-            <HStack>
+            <HStack margin="auto">
                 <Link to={`/patients/${id}/medical-record/vaccinations`}>
                     Vaccinations
                 </Link>

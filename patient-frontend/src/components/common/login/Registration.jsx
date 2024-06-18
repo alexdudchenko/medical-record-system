@@ -63,7 +63,7 @@ export default function Registration() {
 
     return (
         <>
-            <Box w="50%" margin="auto">
+            <Box w="25%" margin="auto" marginTop="10px">
                 <FormControl margin="auto">
                     <FormLabel>First name</FormLabel>
                     <Input type="text"
@@ -135,7 +135,7 @@ export default function Registration() {
                            name="index"
                            onChange={(e) => setIndex(e.target.value)}
                     />
-                    <ButtonGroup>
+                    <ButtonGroup marginTop="10px">
                         <Button type="submit" onClick={handleRegistrationFormSubmission}>Register</Button>
                     </ButtonGroup>
                 </FormControl>
